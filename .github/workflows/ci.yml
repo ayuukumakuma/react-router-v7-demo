@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
         
-      - name: Run Biome check
-        run: pnpm exec biome check .
+      - name: Run Biome CI
+        run: pnpm exec biome ci .
         
       - name: Run typecheck
         run: pnpm run typecheck

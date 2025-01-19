@@ -7,7 +7,7 @@
 		"dev": "react-router dev",
 		"start": "wrangler dev",
 		"typecheck": "react-router typegen && tsc -b",
-		"lint": "biome check ."
+		"check": "biome check ."
 	},
 	"dependencies": {
 		"@react-router/node": "7.1.3",
