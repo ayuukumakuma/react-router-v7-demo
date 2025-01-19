@@ -1,6 +1,6 @@
 import { ArticleCard } from "@/components/article-card";
-import type { Route } from "./+types/_index";
 import { getNewsFromCountry } from "@/server/get-news-from-country";
+import type { Route } from "./+types/_index";
 
 export function meta() {
 	return [
