@@ -2,4 +2,5 @@
 
 interface Env {
 	VALUE_FROM_CLOUDFLARE: "Hello from Cloudflare";
+	NEWS_API_KEY: string;
 }

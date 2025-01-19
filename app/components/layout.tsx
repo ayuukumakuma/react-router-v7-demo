@@ -16,10 +16,6 @@ export const Layout = ({ children }: Props) => {
 							Top
 						</NavLink>
 						<span className="font-normal">/</span>
-						<NavLink to="/japan" className="hover:underline">
-							Japan
-						</NavLink>
-						<span className="font-normal">/</span>
 						<NavLink to="/search" className="hover:underline">
 							Search
 						</NavLink>

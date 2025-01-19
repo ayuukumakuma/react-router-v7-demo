@@ -1,16 +1,36 @@
+import { ArticleCard } from "@/components/article-card";
 import type { Route } from "./+types/_index";
+import { getNewsFromCountry } from "@/server/get-news-from-country";
 
 export function meta() {
 	return [
-		{ title: "New React Router App" },
-		{ name: "description", content: "Welcome to React Router!" },
+		{ title: "News Demo Site" },
+		{ name: "description", content: "Developing By React Router v7" },
 	];
 }
 
-export function loader({ context }: Route.LoaderArgs) {
-	return { message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE };
+export async function loader({ context }: Route.LoaderArgs) {
+	const apiKey = context.cloudflare.env.NEWS_API_KEY;
+	const data = await getNewsFromCountry(apiKey, "us");
+	return data;
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-	return <h1>{loaderData.message}</h1>;
+	return (
+		<div>
+			<ArticleCard />
+			{loaderData.articles.map((article) => (
+				<div key={article.url}>
+					<img
+						className="max-w-screen-sm"
+						src={article.urlToImage ?? ""}
+						alt="alt"
+					/>
+					<a href={article.url} target="_blank" rel="noreferrer">
+						{article.title}
+					</a>
+				</div>
+			))}
+		</div>
+	);
 }
