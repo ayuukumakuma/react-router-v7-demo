@@ -3,7 +3,7 @@ default:
 
 # install a new component
 [group("shadcn")]
-add-component component-name:
+add-component component-name='':
   pnpm dlx shadcn@latest add {{component-name}}
 
 alias ac := add-component
