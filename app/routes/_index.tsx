@@ -12,12 +12,13 @@ export function meta() {
 }
 
 export async function loader({ context, request }: Route.LoaderArgs) {
+	const userAgent = request.headers.get("User-Agent") ?? "";
 	const url = new URL(request.url);
 	const search = url.search;
 	const page = Number(url.searchParams.get("page") ?? 1);
 
 	const apiKey = context.cloudflare.env.NEWS_API_KEY;
-	const data = await getNewsFromCountry(apiKey, "us", page);
+	const data = await getNewsFromCountry(apiKey, userAgent, "us", page);
 	console.log(data);
 
 	const totalPage = Math.ceil(data.totalResults / 21);

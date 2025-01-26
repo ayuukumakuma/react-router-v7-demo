@@ -6,6 +6,7 @@ const url = "https://newsapi.org/v2/top-headlines/";
 export const getNewsFromCountry = cache(
 	async (
 		apiKey: string,
+		userAgent: string,
 		country: string,
 		page: number,
 	): Promise<NewsApiResponse> => {
@@ -15,6 +16,7 @@ export const getNewsFromCountry = cache(
 				{
 					headers: {
 						"X-Api-Key": apiKey,
+						"User-Agent": userAgent,
 					},
 				},
 			);

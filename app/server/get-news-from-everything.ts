@@ -6,6 +6,7 @@ const url = "https://newsapi.org/v2/everything/";
 export const getNewsFromEverything = cache(
 	async (
 		apiKey: string,
+		userAgent: string,
 		q: string,
 		language: string,
 		from: string,
@@ -18,6 +19,7 @@ export const getNewsFromEverything = cache(
 				{
 					headers: {
 						"X-Api-Key": apiKey,
+						"User-Agent": userAgent,
 					},
 				},
 			);

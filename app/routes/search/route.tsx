@@ -9,6 +9,7 @@ import { useFetcher } from "react-router";
 import type { Route } from ".react-router/types/app/routes/search/+types/route";
 
 export async function action({ request, context }: Route.ActionArgs) {
+	const userAgent = request.headers.get("User-Agent") ?? "";
 	const url = new URL(request.url);
 	const page = Number(url.searchParams.get("page") ?? 1);
 	const search = url.search;
@@ -20,7 +21,15 @@ export async function action({ request, context }: Route.ActionArgs) {
 	const to = formData.get("to") as string;
 
 	const apiKey = context.cloudflare.env.NEWS_API_KEY;
-	const data = await getNewsFromEverything(apiKey, q, language, from, to, page);
+	const data = await getNewsFromEverything(
+		apiKey,
+		userAgent,
+		q,
+		language,
+		from,
+		to,
+		page,
+	);
 
 	const totalPage = Math.ceil(data.totalResults / 21);
 
