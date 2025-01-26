@@ -18,6 +18,7 @@ export async function loader({ context, request }: Route.LoaderArgs) {
 
 	const apiKey = context.cloudflare.env.NEWS_API_KEY;
 	const data = await getNewsFromCountry(apiKey, "us", page);
+	console.log(data);
 
 	const totalPage = Math.ceil(data.totalResults / 21);
 
@@ -31,7 +32,6 @@ export async function loader({ context, request }: Route.LoaderArgs) {
 
 export default function Home({ loaderData }: Route.ComponentProps) {
 	const { page, totalPage, search, articles } = loaderData;
-	console.log(loaderData);
 
 	const searchParams = new URLSearchParams(search);
 
