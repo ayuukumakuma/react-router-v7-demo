@@ -31,6 +31,8 @@ export async function loader({ context, request }: Route.LoaderArgs) {
 
 export default function Home({ loaderData }: Route.ComponentProps) {
 	const { page, totalPage, search, articles } = loaderData;
+	console.log(loaderData);
+
 	const searchParams = new URLSearchParams(search);
 
 	return (
