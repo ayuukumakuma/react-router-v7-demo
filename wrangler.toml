@@ -4,5 +4,6 @@ compatibility_date = "2024-11-18"
 main = "./build/server/index.js"
 assets = { directory = "./build/client/" }
 
+# wrangler.toml (wrangler v3.88.0^)
 [observability.logs]
 enabled = true
