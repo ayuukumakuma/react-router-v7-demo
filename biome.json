@@ -7,6 +7,13 @@
 	},
 	"linter": {
 		"rules": {
+			"correctness": {
+				"noUnusedImports": "error",
+				"noUnusedVariables": "error"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "off"
+			},
 			"style": {
 				"useNodejsImportProtocol": "off"
 			}

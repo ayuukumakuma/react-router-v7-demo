@@ -5,7 +5,6 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 
-import NoImage from "/images/no-image.png?url";
 import { Link } from "react-router";
 
 type Props = {
