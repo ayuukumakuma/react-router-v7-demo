@@ -19,7 +19,6 @@ export async function loader({ context, request }: Route.LoaderArgs) {
 
 	const apiKey = context.cloudflare.env.NEWS_API_KEY;
 	const data = await getNewsFromCountry(apiKey, userAgent, "us", page);
-	console.log(data);
 
 	const totalPage = Math.ceil(data.totalResults / 21);
 
