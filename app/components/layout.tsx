@@ -13,7 +13,7 @@ export const Layout = ({ children }: Props) => {
 					</NavLink>
 					<div className="flex gap-4 font-semibold">
 						<NavLink to="/" className="hover:underline">
-							Top
+							Top News
 						</NavLink>
 						<span className="font-normal">/</span>
 						<NavLink to="/search" className="hover:underline">
@@ -22,7 +22,7 @@ export const Layout = ({ children }: Props) => {
 					</div>
 				</div>
 			</header>
-			<div className="p-4">{children}</div>
+			<div className="p-6">{children}</div>
 			<footer className="mt-auto p-4">footer</footer>
 		</div>
 	);

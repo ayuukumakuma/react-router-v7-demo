@@ -4,13 +4,20 @@ import { cache } from "react";
 const url = "https://newsapi.org/v2/top-headlines/";
 
 export const getNewsFromCountry = cache(
-	async (apiKey: string, country: string): Promise<NewsApiResponse> => {
+	async (
+		apiKey: string,
+		country: string,
+		page: number,
+	): Promise<NewsApiResponse> => {
 		try {
-			const response = await fetch(`${url}?country=${country}`, {
-				headers: {
-					"X-Api-Key": apiKey,
+			const response = await fetch(
+				`${url}?country=${country}&pageSize=21&page=${page}`,
+				{
+					headers: {
+						"X-Api-Key": apiKey,
+					},
 				},
-			});
+			);
 			return response.json();
 		} catch (error) {
 			console.error(error);

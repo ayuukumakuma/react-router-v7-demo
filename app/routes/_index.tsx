@@ -1,6 +1,8 @@
 import { ArticleCard } from "@/components/article-card";
 import { getNewsFromCountry } from "@/server/get-news-from-country";
 import type { Route } from "./+types/_index";
+import { Title } from "@/components/title";
+import { Pagination } from "@/components/pagination";
 
 export function meta() {
 	return [
@@ -9,28 +11,47 @@ export function meta() {
 	];
 }
 
-export async function loader({ context }: Route.LoaderArgs) {
+export async function loader({ context, request }: Route.LoaderArgs) {
+	const url = new URL(request.url);
+	const search = url.search;
+	const page = Number(url.searchParams.get("page") ?? 1);
+
 	const apiKey = context.cloudflare.env.NEWS_API_KEY;
-	const data = await getNewsFromCountry(apiKey, "us");
-	return data;
+	const data = await getNewsFromCountry(apiKey, "us", page);
+
+	const totalPage = Math.ceil(data.totalResults / 21);
+
+	return {
+		page,
+		totalPage,
+		search,
+		articles: data.articles,
+	};
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
+	const { page, totalPage, search, articles } = loaderData;
+	const searchParams = new URLSearchParams(search);
+
 	return (
-		<div>
-			<ArticleCard />
-			{loaderData.articles.map((article) => (
-				<div key={article.url}>
-					<img
-						className="max-w-screen-sm"
-						src={article.urlToImage ?? ""}
-						alt="alt"
+		<div className="flex flex-col gap-6">
+			<Title>Top News</Title>
+			<div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+				{articles.map((article) => (
+					<ArticleCard
+						key={article.url}
+						url={article.url}
+						src={article.urlToImage}
+						title={article.title}
+						description={article.description}
 					/>
-					<a href={article.url} target="_blank" rel="noreferrer">
-						{article.title}
-					</a>
-				</div>
-			))}
+				))}
+			</div>
+			<Pagination
+				currentPage={Number(page)}
+				totalPage={totalPage}
+				searchParams={searchParams}
+			/>
 		</div>
 	);
 }
