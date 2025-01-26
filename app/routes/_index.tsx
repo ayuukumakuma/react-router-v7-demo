@@ -1,8 +1,8 @@
 import { ArticleCard } from "@/components/article-card";
+import { Pagination } from "@/components/pagination";
+import { Title } from "@/components/title";
 import { getNewsFromCountry } from "@/server/get-news-from-country";
 import type { Route } from "./+types/_index";
-import { Title } from "@/components/title";
-import { Pagination } from "@/components/pagination";
 
 export function meta() {
 	return [

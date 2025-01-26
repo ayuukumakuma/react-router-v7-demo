@@ -1,11 +1,11 @@
 import { buttonVariants } from "@/components/ui/button";
 import {
-	Pagination as UiPagination,
 	PaginationContent,
 	PaginationItem,
 	PaginationLink,
 	PaginationNext,
 	PaginationPrevious,
+	Pagination as UiPagination,
 } from "@/components/ui/pagination";
 import { cn } from "@/lib/utils";
 
